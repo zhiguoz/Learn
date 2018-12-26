@@ -1,0 +1,136 @@
+https://www.cnblogs.com/xuxiuxiu/p/6270494.html
+
+系统变量：
+　　$0 这个程序的执行名字
+　　$n 这个程序的第n个参数值，n=1...9
+　　$* 这个程序的所有参数
+　　$# 这个程序的参数个数
+　　$$ 这个程序的PID
+　　$! 执行上一个背景指令的PID
+	$? 上一个指令的返回值
+	
+从键盘输入变量值
+	使用read命令，read var1 var2 … varn
+	
+expr命令可以将字符型变量转换为整数进行操作
+	operator为+ - * / %, 但对*的使用要用转义符/，expr 5 /* 5
+	
+逻辑运算
+	test进行逻辑运算，用[ ]括起来就是test运算
+	int1 -eq int2 相等?
+	int1 -ne int2 不等?
+	int1 -gt int2 int1 > int2 ?
+	int1 -ge int2 int1 >= int2 ?
+	int1 -lt int2 int1 < int2 ?
+	int1 -le int2 int1 <= int2
+
+双引号及单引号
+	$echo "$HOME $PATH"  -- 显示变量值
+		/home/hbwork opt/kde/bin:/usr/local/bin:
+	$echo '$HOME $PATH'  -- 显示单引号里的内容
+		$HOME $PATH
+		
+分支结构
+	结构一
+	if [ variable = value ]
+	then
+	command
+	else
+	if [ variable = value ]
+	then
+	command
+	else
+	command
+	fi
+ 
+	结构二
+	if [ variable = value ]
+	then
+	command
+	elif [ variable = value ]
+	then
+	command
+	fi
+ 
+	语句示例：
+	if [ "22" -lt "33" ]   then   //注意空格
+	　　echo "22 less than 33"
+	　　else
+	　　echo "no"
+	fi                                  //if语句的结束
+	
+Case语句
+	case value in
+	pattern1)
+		command;;
+	pattern2)
+		command;;
+	...
+	patternn)
+		command;
+	esac
+
+	语句示例；
+	read ans                    //读取一个变量read
+	case $ans in
+	　　1)
+	　　echo   "you numer is $ans"
+	　　;;                                //注意符号是两个 ;
+	　　2)
+	　　echo "you number is 2"
+	　　;;
+	　　[3-9])
+	　　echo "you number is $ans"
+	　　;;
+	　　*)                                   //*通配符
+	　　echo "others"
+	esac
+	
+For循环
+	for var in arg1 arg2 ... argn
+	do
+	command
+	....
+	command
+	done
+
+	For循环示例：
+	int=1
+	for $int in 1 2 3 4 5
+	do
+	sq=`expr $int /* $int`
+	echo $sq
+	int=`expr $int + 1`
+	done	
+	
+while循环
+	while command
+	do
+	command
+	command
+	command
+	...
+	Done
+
+	While循环的示例：
+	int=1
+	while [ $int -le 5 ]
+	do
+	sq=`expr $int /* $int`
+	echo $sq
+	int=`expr $int + 1`
+	done
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
